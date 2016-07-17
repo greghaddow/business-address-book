@@ -1,0 +1,12 @@
+version: '2'
+services:
+  app:
+    build: .
+    ports:
+      - "80"
+    volumes:
+      - ../:/shore_site
+    external_links:
+      - /mariadb
+    network_mode: "bridge"
+

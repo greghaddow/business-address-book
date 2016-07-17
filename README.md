@@ -1,8 +1,4 @@
-# business-address-book
-Example Symfony 3 project with Sonata Admin - Business Address Book
+htdocs
+======
 
-Install Symfony 3
-Add Sonata admin (Symfony 3 compatible)
-Set up
-Commit entities to database
-Go ahead and use!
+A Symfony project created on July 16, 2016, 6:40 pm.
