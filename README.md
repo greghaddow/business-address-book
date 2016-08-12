@@ -67,3 +67,4 @@ server {
 
 Browse to your site and start adding contacts/organisations
 
+There is also a sample dockerfile and apache config and php.ini settings in the .shore folder (.shore is a custom dockerised development environment I use - don't ask)
