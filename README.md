@@ -21,5 +21,49 @@ bin/console doctrine:schema:update --force
 ```
 This will create your database models
 
+Change permissions of cache and logs:
+```
+chmod -R 777 var/cache
+chmod -R 777 var/logs
+```
+
+enable mod_rewrite or equivalent and set up webserver.
+e.g. in nginx:
+```
+index app_dev.php;
+try_files $uri $uri/ /app_dev.php?$args;
+```
+
+nginx full setup file with fastcgi:
+```
+server {
+    listen 80;
+
+    root /opt/business-address-book/web;
+    index app_dev.php;
+
+    server_name bab.local;
+        try_files $uri $uri/ /app_dev.php?$args;
+
+        # set expiration of assets to MAX for caching
+        location ~* \.(ico|css|js)(\?[0-9]+)?$ {
+                expires max;
+                log_not_found off;
+        }
+
+
+        location ~* \.php$ {
+
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_read_timeout 300;
+        fastcgi_index app_dev.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        }
+
+}
+```
+
 Browse to your site and start adding contacts/organisations
 
